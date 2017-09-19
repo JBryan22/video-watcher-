@@ -12,7 +12,9 @@ class SearchBar extends Component{ //extends means it can use that class and its
   render() { //all React classes need a render() function. this is what gets returned to be placed on the DOM. must return jsx
     return (
       <div>
-        <input onChange={event => this.setState({ term: event.target.value })} />
+        <input
+          value={this.state.term}
+          onChange={event => this.setState({ term: event.target.value })} />
       </div>
     ); //onChange is a react property. It triggers on every change. React has documentation for other properties.
     //event is a function that uses es6 notation. it doesnt need to be wrapped () because it is a one line solution.
