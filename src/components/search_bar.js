@@ -11,14 +11,19 @@ class SearchBar extends Component{ //extends means it can use that class and its
 //whenever we change the state of a class it causes the instance of that component to get re-rendered. this how the updated state shows on our page
   render() { //all React classes need a render() function. this is what gets returned to be placed on the DOM. must return jsx
     return (
-      <div>
+      <div className="search-bar">
         <input
           value={this.state.term}
-          onChange={event => this.setState({ term: event.target.value })} />
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     ); //onChange is a react property. It triggers on every change. React has documentation for other properties.
     //event is a function that uses es6 notation. it doesnt need to be wrapped () because it is a one line solution.
     //event.target.value is a property of the event. try console.logging just the event and you will see an object that contains target. within target is the value
+  }
+
+  onInputChange(term) {
+    this.setState({term});
+    this.props.onSearchTermChange(term); //sets the term value based on the event.target.value that was passed into input. it then passes that term back to onSearchTermChange which then runs in index.html. Note: a new search and term happens for every key stroke!
   }
 
   // onInputChange(event) {      ---- we are removing this function and placing it into the return statement in render. We do this because it is such a simple function that it can be placed within the onChange property. ----
